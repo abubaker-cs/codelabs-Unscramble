@@ -21,6 +21,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.example.android.unscramble.R
 import com.example.android.unscramble.databinding.GameFragmentBinding
 
@@ -40,6 +41,29 @@ class GameFragment : Fragment() {
     // Create a ViewModel the first time the fragment is created.
     // If the fragment is re-created, it receives the same GameViewModel instance created by the
     // first fragment
+
+
+    /**
+     * Issue:
+     * =====
+     * In your app, if you initialize the view model using default GameViewModel constructor, like below:
+     *
+     *      private val viewModel = GameViewModel()
+     *
+     * Then the app will lose the state of the viewModel reference when the device goes through a configuration change.
+     *
+     * Solution:
+     * =========
+     * Instead, use the property delegate approach and delegate the responsibility of the viewModel
+     * object to a separate class called viewModels. That means when you access the viewModel object,
+     * it is handled internally by the delegate class, viewModels. The delegate class creates the
+     * viewModel object for you on the first access, and retains its value through configuration
+     * changes and returns the value when requested.
+     */
+
+    // Connect our GameViewModel with the UI Controller (i.e. GameFragment)
+    // Note: A delegate property is defined using the by clause and a delegate class instance.
+    private val viewModel: GameViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
