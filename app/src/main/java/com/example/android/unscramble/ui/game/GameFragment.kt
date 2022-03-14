@@ -100,15 +100,30 @@ class GameFragment : Fragment() {
         val playerWord = binding.textInputEditText.text.toString()
 
         if (viewModel.isUserWordCorrect(playerWord)) {
+
+            // Error TextField: False
             setErrorTextField(false)
+
+            // If Next Word is available:
             if (viewModel.nextWord()) {
+
+                // Update Next Word
                 updateNextWordOnScreen()
+
             } else {
+
+                // Final Score
                 showFinalScoreDialog()
+
             }
+
         } else {
+
+            // Error TextField: True
             setErrorTextField(true)
+
         }
+
     }
 
     /*
@@ -194,16 +209,28 @@ class GameFragment : Fragment() {
     }
 
     /*
+    * Built-in Feature of TextInputLayout: Display Errors using MaterialUI Component.
     * Sets and resets the text field error status.
     */
     private fun setErrorTextField(error: Boolean) {
+
         if (error) {
+
+            // Enable Error Feature
             binding.textField.isErrorEnabled = true
+
+            // Display Error Message | Note .error is a built-in feature of TextInputLayout
             binding.textField.error = getString(R.string.try_again)
+
         } else {
+
+            // Disable supporting Error Feature
             binding.textField.isErrorEnabled = false
+
+            // null = It will clear the Error Message from the TextField
             binding.textInputEditText.text = null
         }
+
     }
 
     /*

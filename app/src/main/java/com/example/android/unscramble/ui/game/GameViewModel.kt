@@ -95,6 +95,8 @@ class GameViewModel : ViewModel() {
 
 
     /*
+    * Helper Method:
+    * =============
     * Increases the game score if the player's word is correct.
     */
     private fun increaseScore() {
@@ -102,14 +104,23 @@ class GameViewModel : ViewModel() {
     }
 
     /*
+    * Helper Method:
+    * =============
     * Returns true if the player word is correct.
     * Increases the score accordingly.
     */
     fun isUserWordCorrect(playerWord: String): Boolean {
+
+        // Validate the player's word and increase the score if the guess is correct.
         if (playerWord.equals(currentWord, true)) {
+
+            //  This will update the final score in your alert dialog.
             increaseScore()
             return true
+
         }
+
+        //
         return false
     }
 
