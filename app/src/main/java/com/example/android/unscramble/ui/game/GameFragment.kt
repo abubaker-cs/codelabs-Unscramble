@@ -212,8 +212,14 @@ class GameFragment : Fragment() {
      * restart the game.
      */
     private fun restartGame() {
+
+        // Reset Values + Data
         viewModel.reinitializeData()
+
+        // Hide Error Field
         setErrorTextField(false)
+
+        // Displays the next scrambled word on screen.
         updateNextWordOnScreen()
     }
 
