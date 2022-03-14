@@ -9,7 +9,7 @@ import com.example.android.unscramble.ui.game.allWordsList
  */
 class GameViewModel : ViewModel() {
 
-    // Score
+    // Score: We will be using the "Score" variable to display results using the MaterialAlertDialog
     private var _score = 0
     val score: Int
         get() = _score
@@ -114,6 +114,8 @@ class GameViewModel : ViewModel() {
     }
 
     /*
+    * Helper Method
+    * =============
     * Returns true if the current word count is less than MAX_NO_OF_WORDS
     */
     fun nextWord(): Boolean {

@@ -70,8 +70,10 @@ class GameFragment : Fragment() {
         // Inflate the layout XML file and return a binding object instance
         binding = GameFragmentBinding.inflate(inflater, container, false)
         Log.d("GameFragment", "GameFragment created/re-created!")
-        Log.d("GameFragment", "Word: ${viewModel.currentScrambledWord} " +
-                "Score: ${viewModel.score} WordCount: ${viewModel.currentWordCount}")
+        Log.d(
+            "GameFragment", "Word: ${viewModel.currentScrambledWord} " +
+                    "Score: ${viewModel.score} WordCount: ${viewModel.currentWordCount}"
+        )
         return binding.root
     }
 
@@ -85,7 +87,8 @@ class GameFragment : Fragment() {
         updateNextWordOnScreen()
         binding.score.text = getString(R.string.score, 0)
         binding.wordCount.text = getString(
-            R.string.word_count, 0, MAX_NO_OF_WORDS)
+            R.string.word_count, 0, MAX_NO_OF_WORDS
+        )
     }
 
     /*
@@ -133,16 +136,38 @@ class GameFragment : Fragment() {
     * Creates and shows an AlertDialog with the final score.
     */
     private fun showFinalScoreDialog() {
+
+        // The requireContext() method returns a non-null Context
+        // Usually it is used to get access to resources, databases, and other system services.
+        // In this step, you pass the fragment context to create the alert dialog.
         MaterialAlertDialogBuilder(requireContext())
+
+            // Title: Congratulations!
             .setTitle(getString(R.string.congratulations))
+
+            // Body Message: You scored: %d
             .setMessage(getString(R.string.you_scored, viewModel.score))
+
+            // Make your alert dialog not cancelable when the back key is pressed
             .setCancelable(false)
+
+            // Negative Button: EXIT
             .setNegativeButton(getString(R.string.exit)) { _, _ ->
+
+                // activity?.finish()
                 exitGame()
+
             }
+
+            // Positive Button: Play Again
             .setPositiveButton(getString(R.string.play_again)) { _, _ ->
+
+                // Re-initializes the data in the ViewModel and updates the views with the new data
                 restartGame()
+
             }
+
+            // Initialize the MaterialAlertDialog
             .show()
     }
 
