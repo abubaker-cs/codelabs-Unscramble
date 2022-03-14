@@ -69,11 +69,22 @@ class GameFragment : Fragment() {
     ): View {
         // Inflate the layout XML file and return a binding object instance
         binding = GameFragmentBinding.inflate(inflater, container, false)
+
+        //
         Log.d("GameFragment", "GameFragment created/re-created!")
+
+        // We are observing if our "app data" is being preserved in the viewModel during the configuration change.
+        // *****
+        // Print the:
+        // 1. app data,
+        // 2. word,
+        // 3. score, and
+        // 4. word count.
         Log.d(
             "GameFragment", "Word: ${viewModel.currentScrambledWord} " +
                     "Score: ${viewModel.score} WordCount: ${viewModel.currentWordCount}"
         )
+
         return binding.root
     }
 
