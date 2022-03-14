@@ -97,11 +97,14 @@ class GameFragment : Fragment() {
     * After the last word, the user is shown a Dialog with the final score.
     */
     private fun onSubmitWord() {
+
+        // Store the player's word in it, by extracting it from the text field in the binding variable.
         val playerWord = binding.textInputEditText.text.toString()
 
+        // Validate the player's word
         if (viewModel.isUserWordCorrect(playerWord)) {
 
-            // Error TextField: False
+            // Error TextField: False (reset the text field)
             setErrorTextField(false)
 
             // If Next Word is available:
@@ -119,7 +122,7 @@ class GameFragment : Fragment() {
 
         } else {
 
-            // Error TextField: True
+            // If the user word is incorrect, show an error message in the text field
             setErrorTextField(true)
 
         }
@@ -130,12 +133,19 @@ class GameFragment : Fragment() {
     * Skips the current word without changing the score.
     */
     private fun onSkipWord() {
+
         if (viewModel.nextWord()) {
+
+            //  True: Display the word on screen and reset the text field
             setErrorTextField(false)
             updateNextWordOnScreen()
+
         } else {
+
+            // FALSE: There's no more words left in this round, show the alert dialog with the final score.
             showFinalScoreDialog()
         }
+
     }
 
     /*
