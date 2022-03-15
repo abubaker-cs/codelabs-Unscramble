@@ -104,9 +104,10 @@ class GameFragment : Fragment() {
         )
 
         // Observe the scrambledCharArray LiveData, passing in the LifecycleOwner and the observer.
-        viewModel.currentScrambledWord.observe(viewLifecycleOwner) { newWord ->
-            binding.textViewUnscrambledWord.text = newWord
-        }
+        viewModel.currentScrambledWord.observe(viewLifecycleOwner,
+            { newWord ->
+                binding.textViewUnscrambledWord.text = newWord
+            })
     }
 
     /*
@@ -184,7 +185,7 @@ class GameFragment : Fragment() {
             .setTitle(getString(R.string.congratulations))
 
             // Body Message: You scored: %d
-            .setMessage(getString(R.string.you_scored, viewModel.score))
+            .setMessage(getString(R.string.you_scored, viewModel.score.value))
 
             // Make your alert dialog not cancelable when the back key is pressed
             .setCancelable(false)

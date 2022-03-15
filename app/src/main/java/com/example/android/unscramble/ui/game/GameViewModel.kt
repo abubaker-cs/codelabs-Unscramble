@@ -12,13 +12,13 @@ import com.example.android.unscramble.ui.game.allWordsList
 class GameViewModel : ViewModel() {
 
     // Score: We will be using the "Score" variable to display results using the MaterialAlertDialog
-    private var _score = 0
-    val score: Int
+    private val _score = MutableLiveData(0)
+    val score: LiveData<Int>
         get() = _score
 
     // currentWordCount
-    private var _currentWordCount = 0
-    val currentWordCount: Int
+    private val _currentWordCount = MutableLiveData(0)
+    val currentWordCount: LiveData<Int>
         get() = _currentWordCount
 
     // currentScrambledWord
@@ -78,7 +78,9 @@ class GameViewModel : ViewModel() {
             _currentScrambledWord.value = String(tempWord)
 
             // Increase the word count
-            ++_currentWordCount
+            // ++_currentWordCount
+            // use inc() Kotlin function to increment the value by one with null-safety.
+            _currentWordCount.value = (_currentWordCount.value)?.inc()
 
             // Add the new word to the wordsList
             wordsList.add(currentWord)
@@ -94,8 +96,8 @@ class GameViewModel : ViewModel() {
     fun reinitializeData() {
 
         // Reset Values + Data
-        _score = 0
-        _currentWordCount = 0
+        _score.value = 0
+        _currentWordCount.value = 0
         wordsList.clear()
 
         // Next Word
@@ -109,7 +111,9 @@ class GameViewModel : ViewModel() {
     * Increases the game score if the player's word is correct.
     */
     private fun increaseScore() {
-        _score += SCORE_INCREASE
+        // _score += SCORE_INCREASE
+        // Use the plus() Kotlin function to increase the _score value, which performs the addition with null-safety.
+        _score.value = (_score.value)?.plus(SCORE_INCREASE)
     }
 
     /*
@@ -139,7 +143,7 @@ class GameViewModel : ViewModel() {
     * Returns true if the current word count is less than MAX_NO_OF_WORDS
     */
     fun nextWord(): Boolean {
-        return if (_currentWordCount < MAX_NO_OF_WORDS) {
+        return if (_currentWordCount.value!! < MAX_NO_OF_WORDS) {
             getNextWord()
             true
         } else false
