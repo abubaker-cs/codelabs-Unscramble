@@ -30,7 +30,6 @@
             name="maxNoOfWords"
             type="int"
             />
-
     </data>
 
     <ScrollView
