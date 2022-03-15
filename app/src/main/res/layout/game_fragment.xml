@@ -23,7 +23,7 @@
 
         <variable
             name="gameViewModel"
-            type="com.example.android.unscramble.ui.game.GameViewModel"
+            type="com.example.android.unscramble.adapters.GameViewModel"
             />
 
         <variable
@@ -41,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/default_padding"
-            tools:context=".ui.game.GameFragment"
+            tools:context=".views.GameFragment"
             >
 
             <!-- BTN: Skip -->

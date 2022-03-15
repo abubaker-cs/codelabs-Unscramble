@@ -1,3 +1,5 @@
+package com.example.android.unscramble.adapters
+
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -35,7 +37,7 @@ class GameViewModel : ViewModel() {
      */
     init {
 
-        Log.d("GameFragment", "GameViewModel created!")
+        Log.d("GameFragment", "com.example.android.unscramble.Adapters.GameViewModel created!")
 
         // The result will be that the first word displayed on the screen will be a scrambled word.
         getNextWord()
@@ -44,7 +46,7 @@ class GameViewModel : ViewModel() {
 
     override fun onCleared() {
         super.onCleared()
-        Log.d("GameFragment", "GameViewModel destroyed!")
+        Log.d("GameFragment", "com.example.android.unscramble.Adapters.GameViewModel destroyed!")
     }
 
     /*

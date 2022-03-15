@@ -14,9 +14,8 @@
  * limitations under the License.
  */
 
-package com.example.android.unscramble.ui.game
+package com.example.android.unscramble.views
 
-import GameViewModel
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -25,9 +24,13 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.example.android.unscramble.adapters.GameViewModel
 import com.example.android.unscramble.R
 import com.example.android.unscramble.databinding.GameFragmentBinding
+import com.example.android.unscramble.ui.game.MAX_NO_OF_WORDS
+import com.example.android.unscramble.ui.game.allWordsList
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+
 
 /**
  * Fragment where the game is played, contains the game logic.
@@ -38,16 +41,16 @@ class GameFragment : Fragment() {
     private lateinit var binding: GameFragmentBinding
 
     // Create a ViewModel the first time the fragment is created.
-    // If the fragment is re-created, it receives the same GameViewModel instance created by the
+    // If the fragment is re-created, it receives the same com.example.android.unscramble.Adapters.GameViewModel instance created by the
     // first fragment
 
 
     /**
      * Issue:
      * =====
-     * In your app, if you initialize the view model using default GameViewModel constructor, like below:
+     * In your app, if you initialize the view model using default com.example.android.unscramble.Adapters.GameViewModel constructor, like below:
      *
-     *      private val viewModel = GameViewModel()
+     *      private val viewModel = com.example.android.unscramble.Adapters.GameViewModel()
      *
      * Then the app will lose the state of the viewModel reference when the device goes through a configuration change.
      *
@@ -60,7 +63,7 @@ class GameFragment : Fragment() {
      * changes and returns the value when requested.
      */
 
-    // Connect our GameViewModel with the UI Controller (i.e. GameFragment)
+    // Connect our com.example.android.unscramble.Adapters.GameViewModel with the UI Controller (i.e. GameFragment)
     // Note: A delegate property is defined using the by clause and a delegate class instance.
     private val viewModel: GameViewModel by viewModels()
 
@@ -97,7 +100,7 @@ class GameFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.gameViewModel = viewModel
+        // binding.gameViewModel = viewModel
         binding.maxNoOfWords = MAX_NO_OF_WORDS
 
         // Specify the fragment view as the lifecycle owner of the binding.
