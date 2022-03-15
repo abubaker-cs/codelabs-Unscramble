@@ -94,8 +94,10 @@ class GameFragment : Fragment() {
         // Setup a click listener for the Submit and Skip buttons.
         binding.submit.setOnClickListener { onSubmitWord() }
         binding.skip.setOnClickListener { onSkipWord() }
+
         // Update the UI
-        updateNextWordOnScreen()
+        // updateNextWordOnScreen()
+
         binding.score.text = getString(R.string.score, 0)
         binding.wordCount.text = getString(
             R.string.word_count, 0, MAX_NO_OF_WORDS
@@ -118,13 +120,8 @@ class GameFragment : Fragment() {
             // Error TextField: False (reset the text field)
             setErrorTextField(false)
 
-            // If Next Word is available:
-            if (viewModel.nextWord()) {
-
-                // Update Next Word
-                updateNextWordOnScreen()
-
-            } else {
+            // If Next Word is not available:
+            if (!viewModel.nextWord()) {
 
                 // Final Score
                 showFinalScoreDialog()
@@ -149,7 +146,7 @@ class GameFragment : Fragment() {
 
             //  True: Display the word on screen and reset the text field
             setErrorTextField(false)
-            updateNextWordOnScreen()
+            // updateNextWordOnScreen()
 
         } else {
 
@@ -220,7 +217,7 @@ class GameFragment : Fragment() {
         setErrorTextField(false)
 
         // Displays the next scrambled word on screen.
-        updateNextWordOnScreen()
+        // updateNextWordOnScreen()
     }
 
     /*
@@ -263,7 +260,7 @@ class GameFragment : Fragment() {
     /*
      * Displays the next scrambled word on screen.
      */
-    private fun updateNextWordOnScreen() {
-        binding.textViewUnscrambledWord.text = viewModel.currentScrambledWord
-    }
+    // private fun updateNextWordOnScreen() {
+    //    binding.textViewUnscrambledWord.text = viewModel.currentScrambledWord
+    // }
 }

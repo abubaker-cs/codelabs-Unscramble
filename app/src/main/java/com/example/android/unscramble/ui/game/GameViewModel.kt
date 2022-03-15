@@ -1,4 +1,6 @@
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.android.unscramble.ui.game.MAX_NO_OF_WORDS
 import com.example.android.unscramble.ui.game.SCORE_INCREASE
@@ -20,8 +22,8 @@ class GameViewModel : ViewModel() {
         get() = _currentWordCount
 
     // currentScrambledWord
-    private lateinit var _currentScrambledWord: String
-    val currentScrambledWord: String
+    private val _currentScrambledWord = MutableLiveData<String>()
+    val currentScrambledWord: LiveData<String>
         get() = _currentScrambledWord
 
     // List of words used in the game
@@ -72,7 +74,8 @@ class GameViewModel : ViewModel() {
         } else {
 
             //  update the value of _currentScrambledWord with the newly scrambled word
-            _currentScrambledWord = String(tempWord)
+            // Note: To access the data within a LiveData object, use the value property
+            _currentScrambledWord.value = String(tempWord)
 
             // Increase the word count
             ++_currentWordCount
