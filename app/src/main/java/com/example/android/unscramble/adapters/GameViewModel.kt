@@ -1,8 +1,12 @@
 package com.example.android.unscramble.adapters
 
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.TtsSpan
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.example.android.unscramble.ui.game.MAX_NO_OF_WORDS
 import com.example.android.unscramble.ui.game.SCORE_INCREASE
@@ -27,6 +31,27 @@ class GameViewModel : ViewModel() {
     private val _currentScrambledWord = MutableLiveData<String>()
     val currentScrambledWord: LiveData<String>
         get() = _currentScrambledWord
+
+    /**
+     * Converting scrambledWord into Spannable string for talkback feature
+     * https://developer.android.com/codelabs/basic-android-kotlin-training-livedata?continue=https%3A%2F%2Fdeveloper.android.com%2Fcourses%2Fpathways%2Fandroid-basics-kotlin-unit-3-pathway-3%23codelab-https%3A%2F%2Fdeveloper.android.com%2Fcodelabs%2Fbasic-android-kotlin-training-livedata#9
+     */
+//    val currentScrambledWord: LiveData<Spannable> = Transformations.map(_currentScrambledWord) {
+//        if (it == null) {
+//            SpannableString("")
+//        } else {
+//            val scrambledWord = it.toString()
+//            val spannable: Spannable = SpannableString(scrambledWord)
+//            spannable.setSpan(
+//                TtsSpan.VerbatimBuilder(scrambledWord).build(),
+//                0,
+//                scrambledWord.length,
+//                Spannable.SPAN_INCLUSIVE_INCLUSIVE
+//            )
+//            spannable
+//        }
+//    }
+
 
     // List of words used in the game
     private var wordsList: MutableList<String> = mutableListOf()
