@@ -44,10 +44,10 @@ class GameViewModel : ViewModel() {
 
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        Log.d("GameFragment", "com.example.android.unscramble.Adapters.GameViewModel destroyed!")
-    }
+    // override fun onCleared() {
+    //    super.onCleared()
+    //    Log.d("GameFragment", "com.example.android.unscramble.Adapters.GameViewModel destroyed!")
+    // }
 
     /*
     * Updates currentWord and currentScrambledWord with the next word.
