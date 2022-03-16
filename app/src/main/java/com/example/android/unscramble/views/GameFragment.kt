@@ -100,9 +100,11 @@ class GameFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // 01 Binding VARIABLES from game_fragment.xml file
         binding.gameViewModel = viewModel
         binding.maxNoOfWords = MAX_NO_OF_WORDS
 
+        // 02 Allow the binding for livedata observation.
         // Specify the fragment view as the lifecycle owner of the binding.
         // This is used so that the binding can observe LiveData updates
         binding.lifecycleOwner = viewLifecycleOwner
